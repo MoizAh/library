@@ -17,6 +17,7 @@ function Book(title, author, pages, id) {
 
 function addBookToLibrary() {
   form.addEventListener("submit", (e) => {
+    e.preventDefault();
     if (fTitle.value == "" || fAuthor.value == "" || fPages.value == "") {
       e.preventDefault();
       alert("Please fill in all the fields.");
@@ -51,7 +52,7 @@ const displayBook = () => {
     card.appendChild(h4);
     bookSection.appendChild(card);
     const deleteCard = document.createElement("button");
-    deleteCard.setAttribute("id", "delete-card")
+    deleteCard.setAttribute("id", "delete-card");
     deleteCard.textContent = "Delete";
     card.appendChild(deleteCard);
     deleteCard.addEventListener("click", () => {
@@ -61,7 +62,7 @@ const displayBook = () => {
       });
     });
     const readStatus = document.createElement("button");
-    readStatus.setAttribute("id", "read-status")
+    readStatus.setAttribute("id", "read-status");
     readStatus.textContent = "Read";
     card.appendChild(readStatus);
     readStatus.addEventListener("click", () => {
