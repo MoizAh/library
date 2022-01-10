@@ -4,6 +4,7 @@ const form = document.querySelector("form");
 const fTitle = document.querySelector("#form-title");
 const fAuthor = document.querySelector("#form-author");
 const fPages = document.querySelector("#form-pages");
+const fSubmit = document.querySelector("#form-submit");
 
 let myLibrary = [];
 
@@ -16,13 +17,16 @@ function Book(title, author, pages, id) {
 
 function addBookToLibrary() {
   form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const newBook = new Book(fTitle.value, fAuthor.value, fPages.value);
-    myLibrary.push(newBook);
-    bookSection.innerHTML = "";
-    displayBook();
-    console.log(myLibrary);
-    form.reset();
+    if (fTitle.value == "" || fAuthor.value == "" || fPages.value == "") {
+      return false;
+    } else {
+      e.preventDefault();
+      const newBook = new Book(fTitle.value, fAuthor.value, fPages.value);
+      myLibrary.push(newBook);
+      bookSection.innerHTML = "";
+      displayBook();
+      form.reset();
+    }
   });
 }
 
