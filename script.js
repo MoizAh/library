@@ -6,7 +6,6 @@ const fAuthor = document.querySelector("#form-author");
 const fPages = document.querySelector("#form-pages");
 
 let myLibrary = [];
-let dataValue = 0;
 
 function Book(title, author, pages, id) {
   this.title = title;
@@ -34,7 +33,6 @@ const displayBook = () => {
     const bookPages = book.pages;
     book.id = "Book" + index;
     const card = document.createElement("div");
-    // card.dataset.index = "Book" + index;
     card.classList.add("card");
     const h2 = document.createElement("h2");
     h2.textContent = bookTitle;
@@ -46,24 +44,28 @@ const displayBook = () => {
     h4.textContent = bookPages;
     card.appendChild(h4);
     bookSection.appendChild(card);
-    const button = document.createElement("button");
-    button.textContent = "Delete";
-    card.appendChild(button);
-    button.addEventListener("click", () => {
-      if (book.id) {
-        card.remove("[data-index" + book.id + "]");
-      }
+    const deleteCard = document.createElement("button");
+    deleteCard.textContent = "Delete";
+    card.appendChild(deleteCard);
+    deleteCard.addEventListener("click", () => {
+      card.remove();
       myLibrary = myLibrary.filter((card) => {
         return card.id !== book.id;
       });
+    });
+    const readStatus = document.createElement("button");
+    readStatus.textContent = "Read";
+    card.appendChild(readStatus);
+    readStatus.addEventListener("click", () => {
+      if (readStatus.className !== "toggled") {
+        card.style.backgroundColor = "blue";
+        readStatus.classList.add("toggled");
+      } else {
+        card.style.backgroundColor = "white";
+        readStatus.className = "untoggled";
+      }
     });
   });
 };
 
 addBookToLibrary();
-
-// let bookIndex = card.getAttribute("data-index");
-// console.log(bookIndex);
-// let removeBook = myLibrary.splice(bIndex, 1);
-// removeBook;
-// bookSection.remove("[data-index" + bookIndex + "]");
