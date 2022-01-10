@@ -18,6 +18,8 @@ function Book(title, author, pages, id) {
 function addBookToLibrary() {
   form.addEventListener("submit", (e) => {
     if (fTitle.value == "" || fAuthor.value == "" || fPages.value == "") {
+      e.preventDefault();
+      alert("Please fill in all the fields.");
       return false;
     } else {
       e.preventDefault();
@@ -45,10 +47,11 @@ const displayBook = () => {
     h3.textContent = bookAuthor;
     card.appendChild(h3);
     const h4 = document.createElement("h4");
-    h4.textContent = bookPages;
+    h4.textContent = bookPages + " Pages";
     card.appendChild(h4);
     bookSection.appendChild(card);
     const deleteCard = document.createElement("button");
+    deleteCard.setAttribute("id", "delete-card")
     deleteCard.textContent = "Delete";
     card.appendChild(deleteCard);
     deleteCard.addEventListener("click", () => {
@@ -58,11 +61,12 @@ const displayBook = () => {
       });
     });
     const readStatus = document.createElement("button");
+    readStatus.setAttribute("id", "read-status")
     readStatus.textContent = "Read";
     card.appendChild(readStatus);
     readStatus.addEventListener("click", () => {
       if (readStatus.className !== "toggled") {
-        card.style.backgroundColor = "blue";
+        card.style.backgroundColor = "#D9E4E8";
         readStatus.classList.add("toggled");
       } else {
         card.style.backgroundColor = "white";
