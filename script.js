@@ -70,7 +70,7 @@ const displayBook = () => {
         readStatus.classList.add("toggled");
       } else {
         card.style.backgroundColor = "white";
-        readStatus.className = "untoggled";
+        readStatus.className = "";
       }
     });
   });
